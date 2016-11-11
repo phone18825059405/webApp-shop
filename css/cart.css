@@ -1,0 +1,262 @@
+main{
+	padding-top: 4.5rem;
+	padding-bottom: 6.3rem;
+}
+body{
+	background: #f5f5f5;
+}
+.list{
+	font-size: 1.4rem;
+	background: #fff;
+	border-bottom: 1px solid #ccc;
+	margin-top: 1rem;
+}
+.list .orderID{
+	line-height: 3.5rem;
+	color: #999999;
+	padding-left: 0.8rem;
+}
+.goods{
+	padding-left: 0.4rem;
+	padding-right: 1rem;
+}
+.list .total, .list .view{
+	line-height: 4rem;
+}
+.list .total{
+	border-bottom: 1px solid #ccc;
+}
+.orderID{
+	font-size: 1.4rem;
+}
+.show{
+	font-size: 0;
+	width: 100%;
+	display: -webkit-box;
+	padding: 1rem 0;
+}
+.show .img{
+	-webkit-box-flex:1;
+	width: 10rem;
+	display: block;
+}
+.show img{
+	width: 100%;
+}
+.show .right{
+	-webkit-box-flex:3;
+	padding-left: 0.4rem;
+}
+.view {
+	position: relative;
+}
+.view .icon-go{
+	line-height: normal;
+	right: 0;
+	top: 50%;
+	margin-top: -0.65rem;
+	display: block;
+	color: #ccc;
+	font-size: 1.2rem;
+}
+.fl{
+	float: left;
+}
+.fr{
+	float: right;
+}
+.goods .fl span:last-child{
+	color: #ea3c17;
+}
+.goods .fr{
+	color: #999999;
+}
+.right p{
+	font-size: 1.4rem;
+    color: #1f1f1f; 
+    max-height: 3.2rem;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    margin-bottom: 0.6rem;
+}
+.right .opt{
+	color: #999999;
+}
+.bot{
+	width: 100%;
+	margin-top: 0.6rem;
+	line-height: 2rem;
+}
+.price{
+	float: left;
+	font-size: 1.6rem;
+	color: #ea3c17;
+	line-height: 2.5rem;
+	height: 2.5rem;
+}
+.view .options{
+	float: left;
+	font-size: 1.4rem;
+	max-width: 55%;
+	overflow: hidden;
+}
+.view .go{
+	float: right;
+}
+.view .go a{
+	color: #ccc;
+	margin-right: 1.4rem;
+}
+.quantity{
+	float: right;
+}
+.quantity .add, .quantity .minus{
+	position: relative;
+	text-align: center;
+	display: inline-block;
+	width: 2.5rem;
+	height: 2.5rem;
+	vertical-align: middle;
+	border:1px solid #ccc;
+	background: #fff;
+	font-size: 1.4rem;
+	line-height: normal;
+	color: #999999;
+}
+.quantity .add{
+	border-top-right-radius: 0.4rem; 
+	border-bottom-right-radius: 0.4rem; 
+}
+.quantity .minus{
+	border-top-left-radius: 0.4rem; 
+	border-bottom-left-radius: 0.4rem; 
+}
+.quantity .add:after, .quantity .minus:after{
+	font-family:"iconfont" !important;
+	font-style:normal;
+	-webkit-font-smoothing: antialiased;
+	-webkit-text-stroke-width: 0.2px;
+	-moz-osx-font-smoothing: grayscale;
+	text-align: center;
+	position: relative;
+	top: 20%;
+	font-size: 1.4rem;
+}
+.quantity .add:after{
+	content: "\e612";
+}
+.quantity .minus:after{
+	content: "\e61a";
+}
+.quantity input[type="number"]{
+	vertical-align: middle;
+	display: inline-block;
+	width: 3rem;
+	height: 2.5rem;
+	border: none;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	text-align: center;
+	font-size: 1.4rem;
+	color: #999999;
+}
+.quantity .input{
+	font-size: 0;
+	display: -webkit-box;
+}
+
+.pay{
+	z-index: 30;
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	background: #fff;
+	border-top: 1px solid #ccc;
+	padding: 0.6rem;
+	padding-left: 1.2rem;
+}
+.pay span{
+	font-size: 1.6rem;
+	line-height: 4rem;
+}
+.pay .dollar{
+	color: #ea3c17;
+}
+.pay a {
+	float: right;
+	display: inline-block;
+	width: 12rem;
+	height: 4rem;
+	background: #e52e04;
+	color: #fff;
+	font-size: 1.8rem;
+	text-align: center;
+	line-height: 4rem;
+	border-radius: 0.4rem;
+}
+.choose{
+	width: 3rem;
+	position: relative;
+}
+.choose input{
+	width: 2rem;
+	height: 2rem;
+	position: absolute;
+	left: 0.5rem;
+	top: 50%;
+	margin-top: -1rem;
+	z-index: 2;
+	opacity: 0;
+}
+.choose i{
+	width: 2rem;
+	height: 2rem;
+	line-height: 2rem;
+	position: absolute;
+	left: 0.5rem;
+	top: 50%;
+	margin-top: -1rem;
+	border-radius: 50%;
+	text-align: center;
+	border: 2px solid #ccc;
+}
+.choose input:checked+i{
+	background: #e52e04;
+	border: none;
+}
+.choose input:checked+i:before{
+	content: "\e617";
+	font-size: 1.4rem;
+	color: #fff;
+	line-height: 2rem;
+}
+.checkAll{
+	width: 100%;
+	height: 4rem;
+	border-bottom: 1px solid #ccc;
+	background: #f9f9f9;
+	padding: 0 1rem;
+}
+.checkAll .choose{
+	height: 4rem;
+	line-height: 4rem;
+	width: auto;
+}
+.checkAll .choose span{
+	display: inline-block;
+	margin-left: 4rem;
+}
+
+.opt{
+	position: relative;
+}
+.icon-delete{
+    position: absolute;
+    right: 0;
+    font-size: 1.6rem;
+    width: 3rem;
+    text-align: right;
+}

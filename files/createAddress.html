@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=0.5, minimum-scale=0.5, maximum-scale=0.5, user-scalable=no,minimal-ui">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="x5-fullscreen" content="true">
+	<meta name="full-screen" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta content="telephone=no" name="format-detection">
+	<meta content="email=no" name="format-detection">
+	<title>AliExpress</title>
+	<!-- 新 Bootstrap 核心 CSS 文件 -->
+	<link rel="stylesheet" type="text/css" href="../iconfont/iconfont.css">
+	<link rel="stylesheet" href="../css/reset.css">
+	<link rel="stylesheet" href="../css/ui.css">
+	<style>
+		.icon-jiahao{
+			right: 0;
+			top: 0;
+		}
+		body{
+			background: #f5f5f5;
+		}
+		main{
+			padding-top: 4.5rem;
+		}
+		input,button{
+		    line-height: 4.3rem;
+		    border: 1px solid #ccc;
+		    float: none;
+		    width: 100%;
+		    /*background-color: transparent;*/
+		    /*margin: .2rem 0 0;*/
+		    padding: 0 1.1rem;
+		    height: 4.3rem;
+		    -webkit-appearance: none;
+		    -webkit-tap-highlight-color: transparent;
+		    box-shadow: none;
+		    border-bottom: none;
+		    background: #fff;
+		    font-size: 1.2rem;
+		}
+		.form{
+			padding: 1.4rem 1rem;
+		}
+		.country{
+			margin-bottom: 0.4rem;
+		}
+		.country>span{
+		    background: #eff0f3;
+		    background: -webkit-linear-gradient(top,#f7f8fa,#e7e9ec);
+		    background: linear-gradient(to bottom,#f7f8fa,#e7e9ec);
+		    border-radius: .3rem;
+		    border-color: #ccc;
+		    border-style: solid;
+		    border-width: 1px;
+		    cursor: pointer;
+		    display: block;
+		    padding: 0;
+		    text-align: center;
+		    text-decoration: none!important;
+		    vertical-align: middle;
+		    -webkit-tap-highlight-color: transparent;
+		    position: relative;
+		}
+		.country>span:before, .country>span:after{
+			content: "";
+			position: absolute;
+			right: 1rem;
+			width: 0;
+		    height: 0;	    		    
+		}
+		.country>span:before{
+			border-bottom: 0.4rem solid #333;
+			border-left: 0.4rem solid transparent;
+		    border-right: 0.4rem solid transparent;
+		    top: 1.4rem;
+		}
+		.country>span:after{
+			border-top: 0.4rem solid #333;
+			border-left: 0.4rem solid transparent;
+		    border-right: 0.4rem solid transparent;
+		    bottom: 1.4rem;
+		}
+		.country span span{
+		    padding-right: 3.7rem;
+		    text-align: left;
+		    overflow: hidden;
+		    text-overflow: ellipsis;
+		    position: relative;
+		    z-index: 10;
+	        font-size: 1.2rem;
+		    line-height: 1.35;
+		    margin: 0;
+		    outline: 0;
+		    padding: 1.2rem 1.6rem 1.2rem 1.7rem;
+		    background-color: transparent;
+		    border: 0;
+		    display: block;
+		}
+		.stateWrapper{
+		    margin: 0 auto;
+		    width: 76%;
+		    height: 60%;
+		    position: fixed;
+		    border-radius: 0.2rem;
+		    top: 20%;
+		    left: 12%;
+		    z-index: 99;
+		}
+		.stateWrapper span{
+			height: 4rem;
+			line-height: 4rem;
+			background: #f0f0f0;
+		   	background: -webkit-linear-gradient(#f7f7f7, #eaeaea);
+		   	background: -o-linear-gradient(#f7f7f7, #eaeaea);
+		   	background: linear-gradient(#f7f7f7, #eaeaea);
+			border-bottom: 1px solid #cdcdcd;
+	    	border-top-left-radius: 0.4rem;
+    		border-top-right-radius: 0.4rem;
+    		display: block;
+		}
+		.stateWrapper ul{
+			height: calc(100% - 4rem);
+			overflow-y: scroll;
+		    border-bottom-left-radius: 0.4rem;
+    		border-bottom-right-radius: 0.4rem;
+		}
+		.stateWrapper ul li{
+			height: 4rem;
+			line-height: 4rem;
+			text-align: center;
+			font-size: 1.2rem;
+			color: #444;
+			background: #fff;
+			border-bottom: 1px solid #ccc;
+		}
+		.stateWrapper .icon-jiahao{
+			position: absolute;
+			width: 2.6rem;
+			height: 2.6rem;
+			line-height: 2.6rem;
+			font-size: 1.2rem;
+			font-weight: 800;
+			transform:rotate(-45deg);
+			-webkit-transform:rotate(-45deg);
+			color: #444;
+			right: 0.4rem;
+			top: 0.2rem;
+		}
+		.form>div{
+			position: relative;
+		}
+		.form>div>.icon-dui{
+			position: absolute;
+			top: 0;
+			display: inline-block;
+			line-height: 4.3rem;
+			right:1.4rem;
+			font-weight: 800;
+			color: #15d71e;
+			font-size: 1.4rem;
+		}
+		.add{
+			margin-top: 3rem;
+		}
+		.add button{
+			background:#d73415;
+			color: #fff;
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<div class="backbar">
+			<i class="iconfont icon-back"></i>
+			<h3>Add New Address</h3>
+		</div>
+	</header>
+	<main>
+		<form class="form">
+			<div class="country"><span><span data-name="state" class="stateText">United States</span></span></div>
+			<div><input type="text" name="userName" required pattern="^[a-zA-z0-9_.\s]+$" placeholder="Contact Name"><i class="iconfont"></i></div>
+			<div><input type="text" name="city" required pattern="^[a-zA-Z\s]+$" placeholder="City"><i class="iconfont"></i></div>
+			<div><input type="text" name="street" required pattern="^[a-zA-Z0-9_\s,]+$" placeholder="Street Address 1"><i class="iconfont"></i></div>
+			
+			<div><input type="number" name="zipCode" required pattern="[0-9]{3,6}" placeholder="ZIP/Postal Code"><i class="iconfont"></i></div>
+			<div><input type="text" name="totalCode" required pattern="^\d+[\s]?-[\s]?\d+[\s]?-[\s]?\d+$" placeholder="Country Code - Area Code - Local Number"><i class="iconfont"></i></div>
+			<div class="add"><button>Add</button></div>
+		</form>
+		<div class="mask" style="display:none"></div>
+		<div class="stateWrapper" style="display:none">
+			<span><i class="iconfont icon-jiahao"></i></span>
+			<ul></ul>
+		</div>
+	</main>
+	<script type="text/javascript">
+	var state = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Louisiana", "Maine", "Massachusetts", "Maryland", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nevada", "NewHampshire", "NewJersey", "NewMexico", "NewYork", "NorthCarolina", "NorthDakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "RhodeIsland", "SouthCarolina", "SouthDakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "WestVirginia", "Wisconsin", "Wyoming"];
+
+	//初始化dom
+	(function(){
+		var frg = document.createDocumentFragment();
+		state.forEach(function(item, index){
+			var li = document.createElement('li');
+			li.className = 'state';
+			li.textContent = item;
+			frg.appendChild(li)
+		})
+		document.querySelector('.stateWrapper ul').appendChild(frg);
+
+		//如果是修改地址
+		if(window.location.search.indexOf('index') != -1){
+			var index = window.location.search.slice(1).match(/[0-9]/)[0];
+			document.querySelector('button').textContent = 'Save';
+			var arr = JSON.parse(localStorage.address);
+			var obj = arr[index];
+
+			var form = document.querySelector('.form');
+			for(var item in obj){
+				if(item !== 'state'){
+					form.querySelector('[name="'+item+'"]').value = obj[item];
+				}				
+			}
+			form.querySelector('[data-name="state"]').textContent = obj['state'];
+		}
+	}())
+
+	//点击弹出选项框
+	document.querySelector('.country').addEventListener('touchstart',function(){
+		document.querySelector('.stateWrapper').style.display = 'block';
+		document.querySelector('.mask').style.display = 'block';
+	})
+
+	//点击选项框更新州
+	document.querySelector('.stateWrapper ul').addEventListener('click',function(e){
+		if(e.target.nodeName.toLowerCase() == 'li'){
+			document.querySelector('.country .stateText').textContent = e.target.textContent;
+			//关闭选项框 遮罩层
+			document.querySelector('.stateWrapper').style.display = 'none';
+			document.querySelector('.mask').style.display = 'none';
+		}
+	})
+
+	//保存地址
+	document.querySelector('button').addEventListener('click',function(e){
+		var inputs = document.querySelectorAll('input');
+		var temp = {};
+		temp['state'] = document.querySelector('.stateText').textContent;
+		Array.prototype.forEach.call(inputs,function(item, index){
+			temp[item.name] = item.value;
+		})
+
+		if(!localStorage.address){
+			var arr = [];		
+		}else{
+			var arr = JSON.parse(localStorage.address);
+		}
+
+		if(window.location.search.indexOf('index') != -1){
+			var index = window.location.search.slice(1).match(/[0-9]/)[0];
+			arr.splice(index,1,temp);
+		}else{
+			arr.push(temp);
+		}		
+		localStorage.address = JSON.stringify(arr);
+
+		//console.log(temp);
+	},false)
+	//表单检测
+	var needCheck = document.querySelectorAll('input[required]');
+	Array.prototype.forEach.call(needCheck,function(item, index){
+		item.addEventListener('change',function(e){
+			console.log()
+			var reg = new RegExp(item.pattern);
+			if(reg.test(item.value)){
+				item.nextElementSibling.classList.add('icon-dui');
+			}else{
+				item.nextElementSibling.className = "iconfont";
+			}
+		})
+	})
+	</script>
+	<script src="../js/ui.js"></script>
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=0.5, minimum-scale=0.5, maximum-scale=0.5, user-scalable=no,minimal-ui">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="x5-fullscreen" content="true">
+	<meta name="full-screen" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta content="telephone=no" name="format-detection">
+	<meta content="email=no" name="format-detection">
+	<title>AliExpress</title>
+	<!-- 新 Bootstrap 核心 CSS 文件 -->
+	<link rel="stylesheet" type="text/css" href="iconfont/iconfont.css">
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/ui.css">	
+	<link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+	<header>
+		<div class="topbar clearfix ">
+			<div class="searchbar clearfix">
+				<div class="icon"><i class="iconfont icon-sousuo"></i></div>
+				<div class="input"><input type="search" placeholder="I'm looking for" v-model="text" v-on:focus="switchHandler" v-on:blur="switchHandler" v-on:input="switchHandler"></div>	
+			</div>
+			<div class="message"><i class="iconfont icon-xiaoxi"></i></div>
+			<a href="files/search.html" class="cancel">Search</a>
+			<div class="s_result" >
+				<ul>
+					<li v-for="item in match"><a href="files/search.html">{{item.val}}</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="slider container-fluid">
+		</div>
+		<script type="text/javascript" src="js/loopSlider.js"></script>
+		<script type="text/javascript">
+			var data = [
+					{
+						'src':'images/banner1.jpg',
+						'width':640
+					},
+					{
+						'src':'images/banner2.jpg',
+						'width':640
+					},
+					{
+						'src':'images/banner3.jpg',
+						'width':640
+					}
+				];
+				new slider(data);
+		</script>
+	</header>
+	<main>	
+		<!---->
+		<section id="categories">
+			<div class="title clearfix">
+				<a href="files/categories.html"><span>All Categories</span><i class="iconfont icon-you"></i></a>
+			</div>
+			<div class="columns">
+				<a>
+					<i class="iconfont icon-home"></i>
+					<h4>Home & Garden</h4>
+				</a>
+				<a>
+					<i class="iconfont icon-diannao"></i>
+					<h4>Electronics</h4>
+				</a>
+				<a>
+					<i class="iconfont icon-z-clothes"></i>
+					<h4>Apparel & Accessories</h4>
+				</a>
+				<a>
+					<i class="iconfont icon-meizhuang"></i>
+					<h4>Kids & Baby</h4>
+				</a>
+			</div>
+		</section>
+		<section id="list">
+			<a href="javascript:">
+				<hgroup>
+					<h4>WOW!</h4>
+					<h5>Buyer Show</h5>
+				</hgroup>
+				<img src="images/list1.jpg" alt="">
+			</a>
+			<a href="javascript:">
+				<hgroup>
+					<h4>Recommend</h4>
+					<h5>something you like</h5>
+				</hgroup>
+				<img src="images/list2.jpg" alt="">
+			</a>
+			<a href="javascript:">
+				<hgroup>
+					<h4>Bestselling</h4>
+					<h5>Most Popular product</h5>
+				</hgroup>
+				<img src="images/list3.jpg" alt="">
+			</a>
+		</section>	
+	</main>
+	<footer>
+		<nav>
+			<a href="javascript:" class="active">
+				<i class="iconfont icon-home"></i>
+				<h5>Home</h5>
+			</a>
+			<a href="files/categories.html">
+				<i class="iconfont icon-sousuo"></i>
+				<h5>Search</h5>
+			</a>
+			<a href="files/cart.html">
+				<i class="iconfont icon-gouwuche"></i>
+				<h5>Cart</h5>
+			</a>
+			<a href="javascript:">
+				<i class="iconfont icon-person"></i>
+				<h5>Account</h5>
+			</a>
+			<a href="javascript:">
+				<i class="iconfont icon-2"></i>
+				<h5>More</h5>
+			</a>
+		</nav>
+	</footer>
+	<div class="mask" style="display:none"></div>
+	<script type="text/javascript" src = "js/vue.min.js"></script>
+	<script type="text/javascript">
+		/*var searchList = ['auto parts','a4 paper','air conditioner','air fresher','bags','buiding materials','biycle','baby food','baby clothes','brush','cotton','crane','colthes','chemical','car battery','dresses kids','drone','doors','doors and windows','dining tables','electric scooter','electric bike','equipment','europe','equipment','engine parts','film blowing machine','furniture','fertilizer','fabrics','flour','flowers wall wedding decor','fan','free sample','generation','glass','gold','gas cooker','garlic','gms-90','garden tools','gym equipment','human hair','hover board','handbags','helmet','honey','headphones','hospital equipment','inverter air conditioner','iron rod','iphone 6 case','iphone 6s','induction brazing machine']
+
+		function switchHandler (event){
+			switch(event.type){
+				case 'focus':
+					console.log('focus');
+					document.querySelector('.topbar').classList.add('fixedSearch');
+					document.querySelector('.mask').style.display="block";
+				break;
+
+				case 'blur':
+					console.log('blur');
+					document.querySelector('.topbar').classList.remove('fixedSearch');
+					document.querySelector('.mask').style.display="none";
+				break;
+
+				case 'input':
+					//console.log('input');
+					if(document.querySelector('input[type=search]').value !== ''){
+						clearTimeout(aa);
+						aa = setTimeout(function(){
+							if(ul.innerHTML == ''){
+								var frg = document.createDocumentFragment();
+								for(var i=0,len=6; i<len; i++){
+									var li = document.createElement('li');
+									//console.log(this)
+									li.innerHTML = '<a href="">'+ document.querySelector('input').value.slice(0,1)+searchList[parseInt(Math.random()*54)] +'</a>';
+									frg.appendChild(li);
+								}
+								document.querySelector('.s_result ul').appendChild(frg);
+							}
+							else{
+								for(var n=0; n<6;n++){
+									ul.children[n].innerHTML = '<a href="">'+ searchList[parseInt(Math.random()*54)] +'</a>';
+								}
+							}
+						},100)
+					}else{
+						ul.innerHTML = '';
+					}
+				break;
+			}
+		}
+
+		var aa;
+		var ul = document.querySelector('.s_result ul');
+		document.querySelector('input[type=search]').addEventListener('focus',switchHandler,false);
+		document.querySelector('input[type=search]').addEventListener('blur',switchHandler,false);
+		document.querySelector('input[type=search]').addEventListener('input',switchHandler,false);*/
+	</script>
+	<script type="text/javascript">
+
+		document.querySelector('.mask').onclick = function(){
+			document.querySelector('.topbar').classList.remove('fixedSearch');
+			document.querySelector('.mask').style.display="none";
+		}
+		var searchList = ['auto parts','a4 paper','air conditioner','air fresher','bags','buiding materials','biycle','baby food','baby clothes','brush','cotton','crane','colthes','chemical','car battery','dresses kids','drone','doors','doors and windows','dining tables','electric scooter','electric bike','equipment','europe','equipment','engine parts','film blowing machine','furniture','fertilizer','fabrics','flour','flowers wall wedding decor','fan','free sample','generation','glass','gold','gas cooker','garlic','gms-90','garden tools','gym equipment','human hair','hover board','handbags','helmet','honey','headphones','hospital equipment','inverter air conditioner','iron rod','iphone 6 case','iphone 6s','induction brazing machine']
+
+		new Vue({
+			el:document.querySelector('.topbar'),
+			data:{
+				list:searchList,
+				match:[],
+				text:""
+			},
+			methods:{
+				switchHandler:function(event){
+					var aa;
+					var ul = document.querySelector('.s_result ul');
+					var that = this;
+					switch(event.type){
+						case 'focus':
+							console.log('focus');
+							document.querySelector('.topbar').classList.add('fixedSearch');
+							document.querySelector('.mask').style.display="block";
+						break;
+
+						case 'blur':
+							console.log('blur');
+							/*document.querySelector('.topbar').classList.remove('fixedSearch');
+							document.querySelector('.mask').style.display="none";*/
+						break;
+
+						case 'input':
+							//console.log('input');
+							if(that.text !== ''){
+								clearTimeout(aa);
+								aa = setTimeout(function(){
+									if(that.match.length>0){
+										for(var i=0,len=5; i<len; i++){
+											that.match.splice(i,1,{'val':that.list[parseInt(Math.random()*54)]})
+										}
+									}else{
+										for(var i=0,len=5; i<len; i++){
+											that.match.push({'val':that.list[parseInt(Math.random()*54)]})
+										}
+									}
+																			
+								},100)
+							}else{
+								that.text = '';
+								that.match = [];
+							}
+						break;
+					}
+				}
+			}
+		})
+	</script>
+</body>
+</html>

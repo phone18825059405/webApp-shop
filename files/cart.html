@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=0.5, minimum-scale=0.5, maximum-scale=0.5, user-scalable=no,minimal-ui">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="x5-fullscreen" content="true">
+	<meta name="full-screen" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta content="telephone=no" name="format-detection">
+	<meta content="email=no" name="format-detection">
+	<title>AliExpress</title>
+	<!-- 新 Bootstrap 核心 CSS 文件 -->
+	<link rel="stylesheet" type="text/css" href="../iconfont/iconfont.css">
+	<link rel="stylesheet" href="../css/reset.css">
+	<link rel="stylesheet" href="../css/ui.css">
+	<link rel="stylesheet" href="../css/cart.css">
+</head>
+<body>
+	<header>
+		<div class="backbar">
+			<i class="iconfont icon-back"></i>
+			<h3>Cart</h3>
+		</div>
+	</header>
+	<main>		
+		<!--<div class="list">
+			<!--<div class="checkAll">
+				<div class="choose">
+					<input type="checkbox">
+					<i class="iconfont"></i>
+					<span></span>
+				</div>	
+			</div>
+			<div class="goods">
+				<div class="show">
+					<div class="choose">
+						<input type="checkbox">
+						<i class="iconfont"></i>
+					</div>					
+					<div class="img"><img src="../images/goods_1.jpg" alt=""></div>
+					<div class="right">
+						<p>EAST KNITTING Fashion Women New Long Sleeve Pullovers celebrity style winter Zipper knitwear Sweater</p>
+						<p class="opt">Options: Red XL</p>
+						<div class="bot clearfix">
+							<div class="price"><span>US $110.50</span></div>
+							<div class="quantity">
+								<span class="minus"></span>
+								<input type="number" value="2" name="quantity">
+								<span class="add"></span>							
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>			
+		</div>-->
+		<div class="pay claerfix">
+			<span>Total:</span>
+			<span class="dollar">US $354.00</span>
+			<a href="payment2.html" class="payNow">Pay Now</a>
+		</div>
+	</main>
+	<script type="text/javascript" src="../js/search.js"></script>
+	<script type="text/javascript">
+		function findParent(ele, _className) {
+		var target;
+		while (ele = ele.parentNode) {
+			if (ele.nodeType == 1 && ele.className == _className) {
+				target=ele;
+	            break;
+			}
+		}
+	    return target;
+	}
+		//if(!sessionStorage.cartList)return;
+		var cartList = JSON.parse(localStorage.cartList);
+
+		cartList.forEach(function(item,index){
+			var div = document.createElement('div');
+			var opts_value = '';
+			var opts = [];
+			div.className = 'list';
+			for(var x in item['opts']){
+				opts_value += item['opts'][x]+' ';
+				opts.push(x);
+			}
+			div.id = item['id'];
+			div.setAttribute('data-opts',opts.toString());
+			div.innerHTML = '<div class="goods"><div class="show"><div class="choose"><input type="checkbox" checked> <i class="iconfont"></i></div><div class="img"><img src="'+item['img']+'" alt=""></div><div class="right"><p>'+searchList[item['id']]['title']+'</p><p class="opt">Options: '+opts_value+'<i class="iconfont icon-delete" data-index='+index+'></i></p><div class="bot clearfix"><div class="price"><span>US $110.50</span></div><div class="quantity"><span class="minus" onclick="minus(this)"></span> <input type="number" value="'+item['quantity']+'" name="quantity"> <span class="add" onclick="add(this)"></span></div></div></div></div></div>';
+			document.querySelector('main').appendChild(div);			
+		})
+		
+		function initPrice(){
+			var input = document.querySelectorAll('input[type=checkbox]');
+			var totalPrice = 0;
+			Array.prototype.forEach.call(input,function(item, index){
+				if(item.checked){
+					var parent = findParent(item,'show');
+					var singlePrice = parent.querySelector('.price span').textContent.match(/[\d.]+/)[0] * 1;
+					var quantity = parent.querySelector('input[type="number"]').value * 1;
+					totalPrice += (singlePrice * quantity);
+				}
+			})
+			document.querySelector('.dollar').innerHTML = 'US $'+totalPrice;
+		}
+		initPrice();
+		
+		function add(that){
+			var input = that.previousElementSibling;
+			input.value = input.value*1 +1;
+			initPrice();
+		}
+		function minus(that){
+			var input = that.nextElementSibling;
+			input.value = input.value*1 -1;
+			input.value = input.value>1?input.value:1;
+			initPrice();
+		}
+
+		document.querySelector('.payNow').onclick = function(){
+			var check_input = document.querySelectorAll('input[type=checkbox]');
+			var arr_checked = [];
+			
+			if(!localStorage.currentList){
+				localStorage.currentList = JSON.stringify(new Array());
+			}
+			var temp_cart = JSON.parse(localStorage.cartList);
+			var temp_current = [];
+
+			for(var i=0; i<check_input.length; i++){
+				if(check_input[i].checked){
+					temp_cart[i]['quantity'] = findParent(check_input[i],'show').querySelector('input[type="number"]').value;
+					temp_current.push(temp_cart[i]);console.log(i)
+					//temp_current.push(temp)
+				}
+			}
+			localStorage.currentList = JSON.stringify(temp_current);
+		}
+
+		//删除
+		var deleteIcon = document.querySelectorAll('.icon-delete');
+		Array.prototype.forEach.call(deleteIcon,function(item){
+			item.onclick = function(e){
+				console.log(111);
+				var index = e.currentTarget.getAttribute('data-index');
+				var arr = JSON.parse(localStorage.cartList);
+				arr.splice(index,1);
+				localStorage.cartList = JSON.stringify(arr);
+
+				var remove = findParent(e.currentTarget,'list');
+
+				remove.style.transition = 'all .2s ease';
+				remove.style.transform = 'translateX(-100%)';			
+				setTimeout(function(){
+					remove.parentNode.removeChild(remove);
+				},250)			
+			}
+		})
+
+	</script>
+	<script src="../js/ui.js"></script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=0.5, minimum-scale=0.5, maximum-scale=0.5, user-scalable=no,minimal-ui">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="x5-fullscreen" content="true">
+	<meta name="full-screen" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta content="telephone=no" name="format-detection">
+	<meta content="email=no" name="format-detection">
+	<title>AliExpress</title>
+	<!-- 新 Bootstrap 核心 CSS 文件 -->
+	<link rel="stylesheet" type="text/css" href="../iconfont/iconfont.css">
+	<link rel="stylesheet" href="../css/categories.css">
+	<link rel="stylesheet" href="../css/reset.css">
+	<link rel="stylesheet" href="../css/ui.css">
+</head>
+<body>
+	<header>
+		<div class="backbar">
+			<i class="iconfont icon-back"></i>
+			<h3>Categories</h3>
+			<i class="iconfont icon-sousuo"></i>
+		</div>
+		<div class="topbar clearfix ">
+			<i class="iconfont icon-toright totitle"></i>
+			<div class="searchbar clearfix">
+				<div class="icon"><i class="iconfont icon-sousuo"></i></div>
+				<div class="input"><input type="search" placeholder="I'm looking for" v-model="text" v-on:focus="switchHandler" v-on:blur="switchHandler" v-on:input="switchHandler"></div>	
+			</div>
+			<a href="search.html" class="cancel">Search</a>
+			<div class="s_result" >
+				<ul>
+					<li v-for="item in match"><a href="search.html">{{item.val}}</a></li>
+				</ul>
+			</div>
+		</div>
+	</header>
+	<main>
+		<section class="_list">
+			<ul>
+			</ul>
+		</section>
+	</main>
+	<div class="mask" style="display:none"></div>
+	<div class="sk-circle">
+	  <div class="sk-circle1 sk-child"></div>
+	  <div class="sk-circle2 sk-child"></div>
+	  <div class="sk-circle3 sk-child"></div>
+	  <div class="sk-circle4 sk-child"></div>
+	  <div class="sk-circle5 sk-child"></div>
+	  <div class="sk-circle6 sk-child"></div>
+	  <div class="sk-circle7 sk-child"></div>
+	  <div class="sk-circle8 sk-child"></div>
+	  <div class="sk-circle9 sk-child"></div>
+	  <div class="sk-circle10 sk-child"></div>
+	  <div class="sk-circle11 sk-child"></div>
+	  <div class="sk-circle12 sk-child"></div>
+	</div>
+</body>
+<script type="text/javascript" src="../js/categories.js"></script>
+<script type="text/javascript">
+(function(categories){
+	var ul = document.querySelector('._list ul');
+	var frg = document.createDocumentFragment();
+	/*加载分类*/
+	for(var i=0,len=categories.length; i<len; i++){
+		var li = document.createElement('li');
+		li.innerHTML = '<a href="../files/classify.html?category-index='+i+'" data-category-index="'+i+'"><i class="iconfont '+categories[i]['icon'] +'"></i><h4>'+ categories[i]['text'] +'</h4><i class="iconfont icon-go"></i></a>';
+		frg.appendChild(li);
+	}
+	ul.appendChild(frg);
+
+	/*隐藏加载动画*/
+	document.querySelector('.sk-circle').style.display="none";
+
+
+})(categories)	
+</script>
+<script type="text/javascript" src = "../js/vue.min.js"></script>
+<script type="text/javascript">
+	document.querySelector('.icon-sousuo').onclick = function(e){
+		document.querySelector('.backbar').style.transform = "translateX(-100%)";
+		document.querySelector('.topbar').style.transform = "translateX(0)";
+	}
+
+	document.querySelector('.totitle').onclick = function(e){
+		document.querySelector('.backbar').style.transform = "";
+		document.querySelector('.topbar').style.transform = "";
+	}
+
+	var searchList = ['auto parts','a4 paper','air conditioner','air fresher','bags','buiding materials','biycle','baby food','baby clothes','brush','cotton','crane','colthes','chemical','car battery','dresses kids','drone','doors','doors and windows','dining tables','electric scooter','electric bike','equipment','europe','equipment','engine parts','film blowing machine','furniture','fertilizer','fabrics','flour','flowers wall wedding decor','fan','free sample','generation','glass','gold','gas cooker','garlic','gms-90','garden tools','gym equipment','human hair','hover board','handbags','helmet','honey','headphones','hospital equipment','inverter air conditioner','iron rod','iphone 6 case','iphone 6s','induction brazing machine']
+
+	new Vue({
+		el:document.querySelector('.topbar'),
+		data:{
+			list:searchList,
+			match:[],
+			text:""
+		},
+		methods:{
+			switchHandler:function(event){
+				var aa;
+				var ul = document.querySelector('.s_result ul');
+				var that = this;
+				switch(event.type){
+					case 'focus':
+						console.log('focus');
+						document.querySelector('.topbar').classList.add('fixedSearch');
+						document.querySelector('.mask').style.display="block";
+					break;
+
+					case 'blur':
+						/*console.log('blur');
+						document.querySelector('.topbar').classList.remove('fixedSearch');
+						document.querySelector('.mask').style.display="none";*/
+					break;
+
+					case 'input':
+						//console.log('input');
+						if(that.text !== ''){
+							clearTimeout(aa);
+							aa = setTimeout(function(){
+								if(that.match.length>0){
+									for(var i=0,len=5; i<len; i++){
+										that.match.splice(i,1,{'val':that.list[parseInt(Math.random()*54)]})
+									}
+								}else{
+									for(var i=0,len=5; i<len; i++){
+										that.match.push({'val':that.list[parseInt(Math.random()*54)]})
+									}
+								}
+																		
+							},100)
+						}else{
+							that.text = '';
+							that.match = [];
+						}
+					break;
+				}
+			}
+		}
+	})
+
+	document.querySelector('.mask').onclick = function(){
+				document.querySelector('.topbar').classList.remove('fixedSearch');
+				document.querySelector('.mask').style.display="none";
+			}
+</script>
+<script src="../js/ui.js"></script>
+</html>

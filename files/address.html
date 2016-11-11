@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=0.5, minimum-scale=0.5, maximum-scale=0.5, user-scalable=no,minimal-ui">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="x5-fullscreen" content="true">
+	<meta name="full-screen" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta content="telephone=no" name="format-detection">
+	<meta content="email=no" name="format-detection">
+	<title>AliExpress</title>
+	<!-- 新 Bootstrap 核心 CSS 文件 -->
+	<link rel="stylesheet" type="text/css" href="../iconfont/iconfont.css">
+	<link rel="stylesheet" href="../css/reset.css">
+	<link rel="stylesheet" href="../css/ui.css">
+	<style>
+		.icon-jiahao{
+			right: 0;
+			top: 0;
+		}
+		body{
+			background: #f5f5f5;
+		}
+		main{
+			padding-top: 4.5rem;
+		}
+		.shipping {
+		    background: #fff;
+			margin-top: 1.2rem;
+		}
+		.address {
+		    display: block;
+		    position: relative;
+		    padding: 1rem 5%;
+		}.address p {
+		    font-size: 1.4rem;
+		    color: #989898;
+		    font-weight: 300;
+		    line-height: 1.3;
+		    height: 1.8rem;
+		}.address .iconfont {
+		    right: 5%;
+		    top: 50%;
+		    margin-top: -1rem;
+		}
+		.icon-go {
+		    color: #9e9e9e;
+		    font-size: 1.3rem;
+		    display: block;
+		    position: absolute;
+		    margin: 0;
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<div class="backbar">
+			<i class="iconfont icon-back"></i>
+			<h3>Address</h3>
+			<a href="createAddress.html"><i class="iconfont icon-jiahao"></i></a>
+		</div>
+	</header>
+	<main>		
+	</main>
+	<script type="text/javascript">
+
+	//从localStorage读取地址
+	(function(){
+		if(localStorage.address){
+			var arr = JSON.parse(localStorage.address);
+			if(arr.length){
+				arr.forEach(function(item, index){
+					var frg = document.createDocumentFragment();
+
+					var div = document.createElement('div');
+						div.className = 'shipping';
+						div.setAttribute('data-index',index);
+
+					div.innerHTML = '<a class="address"><p data-name="userName">'+item.userName+'</p><p data-name="city|street">'+item.city+', '+item.street+'</p><p data-name="zipCode">'+item.zipCode+'</p><p data-name="totalCode">'+item.totalCode+'</p><i class="iconfont icon-go"></i></a>';
+					document.querySelector('main').appendChild(div);
+				})
+			}
+		}
+	}())
+	
+	</script>
+	<script src="../js/ui.js"></script>
+</body>
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=0.5, minimum-scale=0.5, maximum-scale=0.5, user-scalable=no,minimal-ui">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="x5-fullscreen" content="true">
+	<meta name="full-screen" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta content="telephone=no" name="format-detection">
+	<meta content="email=no" name="format-detection">
+	<meta name="wap-font-scale" content="no">
+	<title>AliExpress</title>
+	<!-- 新 Bootstrap 核心 CSS 文件 -->
+	<link rel="stylesheet" type="text/css" href="../iconfont/iconfont.css">
+	<link rel="stylesheet" href="../css/reset.css">
+	<link rel="stylesheet" href="../css/ui.css">
+	<style>
+		html{
+		}
+		body{
+			background: #f5f5f5;
+		}
+		main{
+			margin-top: 4.5rem;
+		}
+		.shipping{
+			background: #fff;
+		}
+		.title{
+			line-height: 4.5rem;
+			height: 4.5rem;
+			font-size: 1.4rem;
+			color: #989898;
+			padding: 0 0.8rem;
+			padding-top: 0.4rem;
+		}
+		.address{
+			display: block;
+			position: relative;
+			padding: 1rem 5%;
+		}
+		.address p{
+			font-size: 1.4rem;
+			color: #989898;
+			font-weight: 300;
+			line-height: 1.3;
+			height: 1.8rem;
+		}
+		.address .iconfont{
+			right: 5%;
+			top: 50%;
+			margin-top: -1rem;
+		}
+
+		.detail{
+			background: #fff;
+		}
+		.detail .store{
+			border-bottom: 1px solid #ccc;
+			line-height: 2.8;
+			font-size: 1.4rem;
+			color: #1f1f1f;
+			padding: 0 0.8rem;
+		}
+		.base{
+			font-size: 0;
+			width: 90%;
+			margin: 0 5%;
+			padding: 1.4rem 0;
+			border-bottom: 1px solid #ccc;
+			position: relative;
+			font-size: 0;
+		}
+		.base .glist {
+		    border: 1px solid #ccc;
+		    border-radius: 4px;
+		    display: inline-block;
+		    margin-right: 1rem;
+		    margin-bottom: 1rem;
+		    padding: .6rem;
+		}
+		.base .glist img{
+			height: 6rem;
+		}
+		.base .glist span{
+			font-size: 1rem;
+		    vertical-align: bottom;
+		    display: inline-block;
+		    height: 100%;
+		    line-height: 6rem;
+		    color: #9e9e9e;
+		}
+		.base .icon-go{
+			position: absolute;
+			right: 0;
+			top: 50%;
+			margin-top: -0.8rem;
+		}
+		.base .right{
+			width: 75%;
+			display: inline-block;
+			vertical-align: top;
+			padding-left: 0.4rem;
+		}
+		.right p{
+		    font-size: 1.4rem;
+		    color: #1f1f1f;
+		    height: 3.2rem;
+		    overflow: hidden;
+		    display: -webkit-box;
+		    -webkit-line-clamp: 2;
+		    -webkit-box-orient: vertical;
+		}
+		.right h3 {
+		    color: #e52600;
+		    font-size: 1.6rem;
+		    margin-top: 0.4rem;
+		    font-weight: 300;
+		}
+		.right h3:after {
+		    content: " / piece";
+		    color: #959595;
+		    font-size: 1.2rem;
+		    font-weight: 300;
+		}
+		.right span{
+			display: block;
+			margin-top: 0.4rem;
+			font-size: 1.4rem;
+			color: #959595;
+		}
+		.form {
+			width: 90%;
+			margin: 0 5%;
+		}
+		.form .title{
+			font-size: 1.4rem;
+			line-height: 3rem;
+			height: 3rem;
+			padding: 0;
+		}
+		.quantity .add, .quantity .minus{
+			position: relative;
+			text-align: center;
+			display: inline-block;
+			width: 4rem;
+			height: 4rem;
+			vertical-align: middle;
+			border:1px solid #ccc;
+			background: #fff;
+			font-size: 1.6rem;
+		}
+		.quantity .add{
+			border-top-right-radius: 0.4rem; 
+			border-bottom-right-radius: 0.4rem; 
+		}
+		.quantity .minus{
+			border-top-left-radius: 0.4rem; 
+			border-bottom-left-radius: 0.4rem; 
+		}
+		.quantity .add:after, .quantity .minus:after{
+			font-family:"iconfont" !important;
+			font-style:normal;
+			-webkit-font-smoothing: antialiased;
+			-webkit-text-stroke-width: 0.2px;
+			-moz-osx-font-smoothing: grayscale;
+			text-align: center;
+			position: relative;
+			top: 25%;
+			font-size: 1.8rem;
+		}
+		.quantity .add:after{
+			content: "\e612";
+		}
+		.quantity .minus:after{
+			content: "\e61a";
+		}
+		.quantity input[type="number"]{
+			vertical-align: middle;
+			display: inline-block;
+			width: 7rem;
+			height: 4rem;
+			border: none;
+			border-top: 1px solid #ccc;
+			border-bottom: 1px solid #ccc;
+			text-align: center;
+			font-size: 1.6rem;
+		}
+		.quantity .input{
+			font-size: 0;
+			display: -webkit-box;
+		}
+		.shipping .select{
+			display: block;
+			width: 100%;
+			border: 1px solid #ccc;
+			border-radius: 0.4rem;
+			line-height: 2.5;
+			font-size: 1.4rem;
+			padding-left: 0.8rem;
+			position: relative;
+			vertical-align: middle;
+		}
+		.select .icon-go{
+			right: 0.8rem;
+			top: 0;
+			line-height: normal;
+			top: 50%;
+			margin-top: -0.8rem;
+		}
+		.input{
+		}
+		.message textarea{
+			width: 100%;
+			font-size: 1.2rem;
+			border-radius: 0.4rem;
+			padding: 1rem;
+			font-weight: 100;
+		}
+		.pay{
+			width: 100%;
+			padding: 5%;
+			z-index: 30;
+		}
+		.pay a{
+			display: block;
+			height: 4.5rem;
+			line-height: 4.5rem;
+			background-color: #e52e04;
+			font-size: 1.8rem;
+			text-align: center;
+			color: #fff;
+		}
+		.quantity .input .piece{
+		    vertical-align: bottom;
+		    font-size: 1.4rem;
+		    margin-left: 1rem;
+		    color: #999999;
+		}
+		.img{
+			width: 80%;
+			overflow: hidden;
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<div class="backbar">
+			<i class="iconfont icon-back"></i>
+			<h3>Detail</h3>
+		</div>
+	</header>
+	<main>
+		<section id="address">
+			<div class="title">Shipping to</div>
+			<div class="shipping">			
+				<a class="address">
+					<p>Jung J.Wolfgram</p>
+					<p>717 Findley Avenue</p>
+					<p>Centralia,Washington 98531……</p>
+					<p>+1-360-3307503</p>
+					<i class="iconfont icon-go"></i>
+				</a>
+			</div>
+		</section>
+		<section id="list">
+			<div class="title">Order Detail</div>
+			<div class="detail">
+				<div class="base">
+					<div class="img">
+					</div>
+					<i class="iconfont icon-go"></i>
+				</div>
+				<div class="form">
+					<div class="shipping">
+						<div class="title">Shipping:</div>
+						<span class="select">US $13.00 via UPS<i class="iconfont icon-go"></i></span>
+					</div>
+					<div class="message">
+						<div class="title">Message:</div>
+						<div class="input">
+							<textarea name="message" id="" cols="20" rows="5" placeholder="To seller(Optional)"></textarea>
+						</div>
+					</div>
+				</div>
+				<div class="pay"><a href="payment.html">Create an Order</a></div>
+			</div>
+		</section>
+	</main>
+	<script type="text/javascript" src="../js/search.js"></script>
+	<script type="text/javascript">
+
+		document.querySelector('textarea').onfocus = function(e){
+			var div = document.createElement('div');
+			div.style.height = window.innerHeight/2 + 'px';
+			div.className = 'holder';
+			e.currentTarget.parentNode.appendChild(div);
+			document.body.scrollTop += window.innerHeight;
+			//console.log(e.currentTarget.parentNode)
+		}
+		document.querySelector('textarea').onblur = function(e){
+			var target = e.currentTarget;
+			var holder = target.parentNode.querySelector('.holder');
+			if(holder)target.parentNode.removeChild(holder)
+			
+			//console.log(e.currentTarget.parentNode)
+		}
+
+		var _img = document.querySelector('.img');
+		var currentList = JSON.parse(localStorage.currentList);
+		currentList.forEach(function(item,index){
+			var div = document.createElement('div');
+			div.className = 'glist';
+			div.innerHTML = '<img src="'+item['img']+'" alt=""><span>× '+item['quantity']+'</span>';
+			//var img = document.createElement('img');
+			//img.src = item['img'];
+			_img.appendChild(div);
+		})
+
+		document.querySelector('.pay').onclick=function(){
+			var cartList = JSON.parse(localStorage.cartList);
+			var currentList = JSON.parse(localStorage.currentList);
+
+			var matchArr = [];
+			currentList.forEach(function(item, index){
+				matchArr.push(item.onlyId)
+			})
+
+			//var reg = new RegExp(matchArr.join('|'));		
+			matchArr.forEach(function(item,index){
+				/*if(reg.test(item.onlyId)){
+					console.log(item.onlyId)
+					
+				}*/
+				var _continue = true;
+				cartList.forEach(function(_item,_index,arr){
+					if(_continue == false)return;
+console.log(item +'|||' + _item.onlyId)
+					if(item == _item.onlyId){	
+						_continue = false;
+						arr.splice(_index,1)
+					}
+				})
+				/*if(_continue == false){
+					arr.splice(index,1);
+				}*/
+			})
+
+			localStorage.cartList = JSON.stringify(cartList);}
+/*---------------------------------------------------------------
+			var currentList = JSON.parse(localStorage.currentList);
+			var temp = {};temp.goods = [];
+
+			temp.time = new Date().toString().slice(0,-21);
+			temp.orderId = new Date()*1;
+			temp.goods = currentList;
+
+			if(!localStorage.orders){
+				var arr = [];			
+			}else{
+				var arr = JSON.parse(localStorage.orders);
+			}
+			arr.push(temp);
+			localStorage.orders = JSON.stringify(arr);
+		}*/
+
+	</script>
+	<script src="../js/ui.js"></script>
+</body>
+</html>

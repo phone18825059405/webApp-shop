@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=0.5, minimum-scale=0.5, maximum-scale=0.5, user-scalable=no,minimal-ui">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="x5-fullscreen" content="true">
+	<meta name="full-screen" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta content="telephone=no" name="format-detection">
+	<meta content="email=no" name="format-detection">
+	<meta name="wap-font-scale" content="no">
+	<title>Document</title>
+	<link rel="stylesheet" href="../css/reset.css">
+	<link rel="stylesheet" href="../css/ui.css">
+  <link rel="stylesheet" href="../css/search.css">
+  <link rel="stylesheet" href="../iconfont/iconfont.css">
+  <script type="text/javascript" src="../js/search.js"></script>
+  <script type="text/javascript" src = "../js/vue.min.js"></script>
+	<script type="text/javascript" src = "../js/lazyload.js"></script>
+  <style>
+    /* always present */
+.expand-transition {
+  transition: all .3s ease;
+  transform:translateX(0);
+}
+/* .expand-enter defines the starting state for entering */
+/* .expand-leave defines the ending state for leaving */
+.expand-enter, .expand-leave {
+  transform:translateX(100%);
+}
+
+.fadeout-transition{
+  transition:all 300ms ease;
+  opacity: 0.8;
+  animation:none;
+}
+.fadeout-leave{
+  opacity: 0;
+}
+  </style>
+</head>
+<body>
+  <script type="text/x-template" id="tab">
+    <div class="orderBar">
+      <span v-for="key in cdata" id="{{key.id}}" @click="sortBy(key)" :class="{'active': sortKey == key.sortby,'up': updown == 1, 'down': updown == -1}">{{key.value}}</span>
+    </div>
+    <section id="goodsList"  v-comp-height style="padding-top:4.2rem">
+    <ul id="ul">
+      <li v-for="item in searchlist  | orderBy sortIn updown | filterBy filterFun | limitBy everyTime">
+        <a href="../files/detail.html?goods={{item.id}}">
+          <div class="img">
+            <img src="{{item.img}}" alt="">
+          </div>
+          <div class="details">
+            <p class="title">{{item.title}}</p>
+            <h3 class="newPrice">US ${{item.newPrice}}</h3>
+            <h4 class="oldPrice">US ${{item.oldPrice}} / piece</h4>
+            <div style="position:relative;line-height:2" class="clearfix">
+               <h4 class="shipping">Free Shipping</h4>
+              <h4 class="totalSell">{{item.totalSell}} / piece</h4>
+            </div>         
+          </div>
+        </a>
+      </li>
+    </ul>
+    </section>   
+  </script>
+ 
+  <script type="text/x-template"  id="filter">
+    <div class="container" v-show="show2" transition="expand">
+      <ul>
+          <li class="clearfix"><a href="javascript:" @click="toggleFilter"><span class="title">Related Categories</span><span class="right">All<i class="iconfont icon-go"></i></span></a></li>
+          <li class="clearfix"><a href="javascript:"><span class="title">Ship to</span><span class="right">United States<i class="iconfont icon-go"></i></span></a></li>
+          <li class="clearfix"><span class="title">Price</span>
+            <span class="right">
+              <span><input type="number" placeholder="Minimal"></span>
+              <span>-</span>
+              <span><input type="number" placeholder="Maximal"></span>
+            </span>
+          </li>
+          <li class="clearfix">
+            <span class="title">Only In Stock</span>
+            <span class="right">
+              <label class="toggle disable-user-behavior">
+                <input type="checkbox" ng-model="item.checked" ng-checked="item.checked" class="ng-untouched ng-valid ng-dirty ng-valid-parse" value="on" checked="checked">
+                <div class="track"><div class="handle"></div></div>
+              </label>
+            </span>
+          </li>
+          <li class="clearfix">
+            <span class="title">Only On Sale</span>
+            <span class="right">
+              <label class="toggle disable-user-behavior">
+                <input type="checkbox" ng-model="item.checked" ng-checked="item.checked" class="ng-untouched ng-valid ng-dirty ng-valid-parse" value="on" checked="checked">
+                <div class="track"><div class="handle"></div></div>
+              </label>
+            </span>
+          </li>
+          <span class="apply" @click="activeFilter">Apply</span>
+          <span class="reset" @click="cancelFilter">Reset</span>
+      </ul>
+      <div class="allCategories" v-show="show1" transition="expand">
+        <div class="_title"><i class="iconfont icon-back" @click=toggleFilter ></i><h3>Filter</h3></div>
+        <ul style="height: calc(100% - 4.5rem); overflow-y: scroll;">
+          <li v-for="value in filterKeys" data-belong="{{$key}}" :class="{'dropdown': activeKey == value,'dropup': activeKey != value}" >
+            <a href="javascript:" @click="changeActive(value)">{{$key}}</a>
+            <ul class="list" style="height:52rem">
+              <li v-for="item in value">
+                <a href="javascript:"><input type="radio" name="clothing" value="sweater" data-value="{{$key}}"><span>{{$key}}</span></a>
+              </li>
+            </ul>              
+          </li>
+        </ul>
+      </div>
+    </div>
+  </script>
+  <!--/////////////////////////////////////////////////////////////////////////////////////-->
+  <header>
+    <div class="backbar">
+      <i class="iconfont icon-back"></i>
+      <h3>Electronics</h3>
+      <a href="cart.html"><i class="iconfont icon-gouwuche"></i></a>
+      <i class="iconfont icon-loudou" @click="showMask"></i>
+    </div>
+  </header>
+  <section id="search">
+    <div class="searchbar clearfix">
+      <div class="icon"><i class="iconfont icon-sousuo"></i></div>
+      <div class="input"><input type="search" placeholder="I'm looking for" value="clothing"></div>           
+    </div>
+  </section>
+  <div id="all"> 
+    <section id="order">
+      <tab :cdata="tabs" :searchlist="searchLists" v-ref:tab></tab>
+    </section> 
+    <section id="filter">                
+        <filter v-ref:filter></filter>      
+    </section>
+  </div> 
+  <div class="mask" v-show="showmask" @click="hideMask" transition="fadeout" ></div> 
+</body>
+
+<script type="text/javascript">
+  var search_vue = new Vue({
+    el:"body",
+    data:{
+      tabs:[
+        {id:'best',value:'Best Match',sortby:'id'},
+        {id:'price',value:'Price',sortby:'newPrice'},
+        {id:'order',value:'Order',sortby:'totalSell'},
+        {id:'feeback',value:'Feeback',sortby:'feeback'},
+      ],
+      searchLists:searchList,
+      filterProps:{},
+      showmask:false,
+    },
+    methods:{
+        /*loadlist2:function(){
+          var that = this;
+          var ul = document.querySelector('#goodsList ul');
+          console.log(document.body.scrollTop +'|||'+ul.offsetHeight + '|||'+ul.offsetTop)
+          if(list.scrollTop+10 >= ul.offsetHeight - window.innerHeight + list.offsetTop){
+              that.everyTime += 10;       
+            }
+        },*/
+        showMask:function(){
+          this.showmask = true;
+          this.$refs.filter.show2 = true;
+        },
+        hideMask:function(){
+          
+          this.showmask = false;
+          this.$refs.filter.show2 = false;console.log(this.showmask)
+        },
+    },
+    ready:function(){
+      /*var that = this;
+
+      var listWrapper = document.querySelector('#goodsList');
+      listWrapper.style.height = window.innerHeight - listWrapper.offsetTop + 'px';
+      listWrapper.style.overflowY = 'scroll';*/
+    },
+    events:{
+      'changeMode':function(mode){
+        this.mode = mode;
+      },
+    },
+    components:{
+      tab:{
+        template:'#tab',
+        props:{
+          cdata:Array,
+          searchlist:Array,
+        },
+        data:function(){
+          return {
+            sortKey:'id',
+            updown:'',
+            filterName:[],
+            everyTime:5,
+          }
+        },
+        methods:{
+          sortBy:function(key){
+            console.log(key)
+            this.sortKey = key.sortby;
+            if(key.id == 'price'){
+              if(this.updown == ''){
+                this.updown = 1;
+              }else{
+                this.updown *= -1
+              }             
+            }else{
+              this.updown = '';
+            }
+            //this.$dispatch('changeMode',this.sortKey)
+          },
+          sortIn:function(a,b){
+            if(this.sortKey == 'newPrice'){
+              var reg = new RegExp(/-/);
+              var value1 = reg.test(a[this.sortKey])==true?a[this.sortKey].match(/[\w.]+/g)[1]*1:a[this.sortKey]*1;        
+              var value2 = reg.test(b[this.sortKey])==true?b[this.sortKey].match(/[\w.]+/g)[1]*1:b[this.sortKey]*1; 
+              return value1 - value2
+             // console.log(a)
+            }else{
+              return a[this.sortKey] > b[this.sortKey]
+            }
+          },
+          filterFun:function(item){
+            if(this.filterName.length == 0) return true;
+            if(item.tag.includes(this.filterName[0]) && item.tag.includes(this.filterName[1])){
+              return true;
+            }
+          }
+        },       
+      },
+      filter:{
+        template:"#filter",
+        props:{
+          filterProps:Object,
+        },
+        data:function(){
+          return {
+            activeKey:'',
+            show1:false,
+            show2:false,
+            filterKeys:{
+              "women’s clothing":{
+              "sweater":2,
+              "casual pants":2,
+              "jacket":1,"blazer":1,
+              "dress":5,
+              "tailored suit":1,
+              "windbreak jacket":1,
+              "wide leg pants":2,
+              "Slim Leg Pant":1,
+              "Jeans":1,
+              "Hoodie":2,
+              "Yoga pants":1,
+              "Fitness pants":1
+            },
+              "men’s clothing":{
+                "suit":2,
+                "suit trousers":5,
+                "casual pants":4,
+                "blazer":4,
+                "hoodie":1,
+                "shirt":5,
+                "three-quarter coat":1,
+                "cardigan":4
+              }
+            },
+          }
+        },
+        methods:{
+          changeActive:function(value){
+            if(value == this.activeKey){
+              this.activeKey = ''
+            }else{
+              this.activeKey = value;
+            }            
+          },
+          toggleFilter:function(){
+            this.show1 = !this.show1;
+          },
+          activeFilter:function(){
+            this.$parent.$refs.tab.filterName = [];
+            var activeInput = document.querySelector('.allCategories input:checked');
+            var parentValue = findParent(activeInput,'data-belong');
+            console.log(activeInput +'|||'+ parentValue)
+            this.$parent.$refs.tab.filterName.push(parentValue.getAttribute('data-belong'),activeInput.getAttribute('data-value'));
+            this.show2 = false;
+            this.$parent.$data.showmask = false;
+          },
+          cancelFilter:function(){
+             this.$parent.$refs.tab.filterName = [];
+             this.show2 = false;
+             this.$parent.$data.showmask = false;
+          }
+        }
+      }
+    }
+  })
+  
+  function findParent(element,prop){
+    while(element = element.parentNode){
+      if(element.nodeType == 1){
+        if(element.getAttribute(prop)){
+            return element;
+        }
+      }
+    }
+  }
+
+  window.addEventListener('scroll',function(){
+        if(document.body.scrollTop+10 > ul.offsetHeight - window.innerHeight + ul.offsetTop){
+          search_vue.$refs.tab.everyTime += 5;
+        }
+  })
+
+</script>
+<script src="../js/ui.js"></script>
+</html>

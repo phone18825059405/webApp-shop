@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=0.5, minimum-scale=0.5, maximum-scale=0.5, user-scalable=no,minimal-ui">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="x5-fullscreen" content="true">
+	<meta name="full-screen" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta content="telephone=no" name="format-detection">
+	<meta content="email=no" name="format-detection">
+	<title>AliExpress</title>
+	<!-- 新 Bootstrap 核心 CSS 文件 -->
+	<link rel="stylesheet" type="text/css" href="../iconfont/iconfont.css">
+	<link rel="stylesheet" href="../css/reset.css">
+	<link rel="stylesheet" href="../css/ui.css">
+	<link rel="stylesheet" href="../css/detail.css">
+</head>
+<body>
+	<header>
+		<div class="backbar">
+			<i class="iconfont icon-back"></i>
+			<h3>Detail</h3>
+			<a href="cart.html"><i class="iconfont icon-gouwuche"></i></a>
+		</div>
+	</header>
+	<main>
+		<section>
+			<div class="slider container-fluid">
+			</div>
+			<script type="text/javascript" src="../js/loopSlider.js"></script>
+			<script type="text/javascript" src="../js/search.js"></script>
+			<script src="../js/hammer.min.js"></script>
+			<script type="text/javascript">
+			/*var data = [
+							{
+								'src':'../images/search_04-1.jpg',
+							},
+							{
+								'src':'../images/search_05-1.jpg',								
+							},
+							{
+								'src':'../images/search_06-1.jpg',								
+							}
+						];*/
+						var data = [];
+						var reg = new RegExp('^_[a-zA-z]+');
+						var index = window.location.search.match(/\d+/)[0];
+						var  me = searchList[index]
+						for(var prop in me){
+							if(reg.test(prop)){
+								for(var item in me[prop]){
+									var temp = {};
+									temp.src = me[prop][item];
+									data.push(temp);
+								}
+								break;
+							}
+						}
+				new slider(data)
+			</script>
+		</section>
+		<section>
+			<div class="view">			
+				<!--<div class="base">
+					<h4>EAST KNITTING Fashion Women New Long Sleeve Pullovers celebrity style winter Zipper knitwear Sweater</h4>
+					<div class="line-2">
+						<i class="iconfont icon-star active"></i>
+						<i class="iconfont icon-star active"></i>
+						<i class="iconfont icon-star active"></i>
+						<i class="iconfont icon-star active"></i>
+						<i class="iconfont icon-star"></i>
+						<span>89.2% of buyers enjoyed this product!</span>
+					</div>
+					<div class="line-3"><h3 class="price">US $56.25</h3><span class="orders">1325 Orders</span></div>
+				</div>
+				<div class="details">
+					<ul>
+						<li class="parameter">
+							<a href="">
+								<div></div>
+								<div></div>
+								<i class="iconfont icon-go"></i>
+							</a>
+						</li>
+						<li class="deliver">
+							<a href="">
+								<div><span class="title">Shipping Cost:</span><span class="shipType">Free shipping</span></div>
+								<div><span class="address">To Russia via Swiss Post</span></div>
+								<i class="iconfont icon-go"></i>
+							</a>
+						</li>
+						<li class="shipping-time">
+							<span class="title">Processing Time:</span><span>Ship out within 3 days</span>
+						</li>
+					</ul>
+				</div>
+				<div class="buy">
+					<a href="" class="addCart">Add to Cart</a>
+					<a href="" class="buyNow">Buy Now</a>
+				</div>-->
+			</div>
+		</section>
+		<section>
+			<div class="options" style="display:none">
+				<div class="topbar">
+					<span class="title">Product Option</span>
+					<i class="iconfont icon-cha"></i>
+				</div>
+				<div class="goods">
+					<div class="img"><img src="../images/goods_1.jpg" alt=""></div>
+					<div class="right">
+						<p>EAST KNITTING Fashion Women New Long Sleeve Pullovers celebrity style winter Zipper knitwear Sweater</p>
+						<h3>US $56.25</h3>
+					</div>
+				</div>
+				<div class="para">
+					<!--<dl class="option-color">
+						<dt>Color:<span>Green</span></dt>
+						<div class="dd">
+							<dd class="col_5"><input type="radio" name="color" checked><i class="color-a6d344 color" checked></i></dd>
+							<dd class="col_5"><input type="radio" name="color"><i class="color-b3fb01 color"></i></dd>
+							<dd class="col_5"><input type="radio" name="color"><i class="color-fdf900 color"></i></dd>
+							<dd class="col_5"><input type="radio" name="color"><i class="color-fcb700 color"></i></dd>
+							<dd class="col_5"><input type="radio" name="color"><i class="color-fc5f00 color"></i></dd>
+						</div>						
+					</dl>
+					<dl class="option-size">
+						<dt>Size:<span>XXL</span></dt>
+						<div class="dd">
+							<dd class="col_4"><input type="radio" name="size" checked><span>XXL</span></i></dd>
+							<dd class="col_4"><input type="radio" name="size"><span>XL</span></i></dd>
+							<dd class="col_4"><input type="radio" name="size"><span>L</span></i></dd>
+							<dd class="col_4"><input type="radio" name="size"><span>M</span></i></dd>
+							<dd class="col_4"><input type="radio" name="size"><span>S</span></i></dd>
+						</div>						
+					</dl>-->
+					<dl class="option-quantity">
+						<dt>Quantity:<span>2</span></dt>
+						<div class="dd">
+							<span class="minus"></span>
+							<input type="number" value="2" name="quantity">
+							<span class="add"></span>
+							<span class="piece">150 piece left</span>
+						</div>
+					</dl>
+				</div>
+				<div class="done">
+					<a href="javascript:">Done</a>
+				</div>
+			</div>
+		</section>
+		<div class="mask" style="display:none"></div>
+		<div class="fvWrapper" style="display:none"><img class="img-fullView" src="" alt=""></div>
+		<div class="tooltip" style="position:fixed"><i class="successIcon"></i> Added Successfully</div>
+	</main>
+</body>	
+
+	<script type="text/javascript">
+		//初始化渲染Dom
+		(function(){
+			function detail(){
+				this.goods = document.querySelector('.options .goods');	 //商品头部，包括图片和产品名称价格等
+				this.para  = document.querySelector('.options .para');	//商品属性，颜色 尺寸 码数等
+				this.index = window.location.search.match(/[\d]+/)[0]; //获取数据索引，指定某件商品
+				this.isSingle = false;
+
+				this.loadView();
+				this.loadOptions();
+				this.addEventHandler();
+
+				this.cremain = document.querySelector('.option-quantity .piece');//当前商品所剩件数
+				this.buyNumber = this.para.querySelector('.option-quantity input[type=number]');//购买数量
+				this.price = document.querySelector('.options h3');
+			}
+			detail.prototype.loadOptions = function(){
+				var that = this;
+				this.para.innerHTML = '';
+
+				//加载产品属性部分
+				var queue = [];//装载产品带有的属性，颜色尺寸等
+				var regx = new RegExp(/_[\w]+/);//匹配属性正则
+				var imgsrc;
+				for(var x in searchList[that.index]){if(regx.test(x)){queue.push(x)}};
+					//console.log(queue);
+				//for循环产品属性里面的子元素
+				for(var i=0,len=queue.length; i<len;i++){
+					//创建显示属性名称的dom标签
+					var dl = document.createElement('dl');
+					dl.className='option'+queue[i];
+
+					//检测属性是对象或数组
+					var type = Object.prototype.toString.call(searchList[that.index][queue[i]]);
+					var temp = [];//对象或者数组的属性
+					var columnSize=0;//检测属性的子元素的字符串长度，根据长度设定布局的class样式，分为几列;	
+					var isColor = false;				
+					var frg = document.createDocumentFragment();
+					//属性为对象
+					if(type.match(/[a-zA-Z]+/g)[1] == 'Object'){
+						var  search_i = searchList[that.index][queue[i]];			
+						for(var x in search_i){
+							temp.push(x);
+							if(x.length > columnSize){
+								columnSize = x.length;
+								if(columnSize<=4){
+									columnSize = 4;
+								}else if(columnSize>=12){
+									columnSize = 12;
+								}else{
+									columnSize = 2;
+								}
+							}						
+						}
+						
+						if(i ==0)imgsrc=temp[0];
+
+						if(i==0 && temp.length<=1){that.isSingle = true};//主属性的子属性是否只有一个(例如只有一种颜色的衣服)
+
+						if(queue[0] == '_Color'){
+							isColor = true;
+							columnSize = 5;
+						}else{
+							isColor = false;
+						}
+						
+						for(var n=0; n<temp.length; n++){
+							var dd = document.createElement('dd');
+							dd.className = 'col_'+columnSize;
+							if(isColor){
+								if(n == 0){
+									dd.innerHTML = '<input type="radio" name="'+queue[i]+'" value="'+temp[n]+'" checked><i class="color" style="background-color:#'+temp[n]+'" checked></i>';
+								}else{
+									dd.innerHTML = '<input type="radio" name="'+queue[i]+'" value="'+temp[n]+'"><i class="color" style="background-color:#'+temp[n]+'"></i>';
+								}
+							}else{
+								if(n == 0){
+									dd.innerHTML = '<input type="radio" name="'+queue[i]+'" value="'+temp[n]+'" checked><span>'+temp[n]+'</span></i>';
+								}else{
+									dd.innerHTML = '<input type="radio" name="'+queue[i]+'" value="'+temp[n]+'"><span>'+temp[n]+'</span></i>';
+								}
+							}
+							
+							frg.appendChild(dd);
+						}
+						//console.log(temp)
+					//属性为数组
+					}else if(type.match(/[a-zA-Z]+/g)[1] == 'Array'){
+						var  search_i = searchList[that.index][queue[i]]
+						for(var x=0; x<search_i.length; x++){
+							temp.push(search_i[x]);
+							if(search_i[x].length > columnSize){
+								columnSize = search_i[x].length;
+								if(columnSize<=4){
+									columnSize = 4;
+								}else if(columnSize>=12){
+									columnSize = 12;
+								}else{
+									columnSize = 2;
+								}
+							}	
+						}
+						for(var n=0; n<temp.length; n++){
+							var dd = document.createElement('dd');
+							dd.className = 'col_'+columnSize;
+							if(n == 0){
+								dd.innerHTML = '<input type="radio" name="'+queue[i]+'" value="'+temp[n]+'" checked><span>'+temp[n]+'</span></i>';
+							}else{
+								dd.innerHTML = '<input type="radio" name="'+queue[i]+'" value="'+temp[n]+'"><span>'+temp[n]+'</span></i>';
+							}
+							frg.appendChild(dd);
+						}
+					}
+					//console.log(temp + '|||' + columnSize);
+
+					var dt = document.createElement('dt');
+					dt.innerHTML = queue[i]+':<span>'+temp[0]+'</span>';
+					var div = document.createElement('div');
+					div.className = 'dd';
+					div.appendChild(frg);		
+
+					dl.appendChild(dt);
+					dl.appendChild(div);
+					//console.log(dl);
+					this.para.appendChild(dl);
+				}
+
+				
+
+				//加载产品头部
+				var once = [];
+				for(var v in searchList[this.index]['suit']){
+					for(z in searchList[this.index]['suit'][v]){
+						once.push(z+'|'+searchList[this.index]['suit'][v][z])
+					}
+					break;
+				}
+
+				//console.log(searchList[that.index][queue[0]][firstPic]);
+				this.goods.innerHTML = '<div class="img"><img src="'+ searchList[that.index][queue[0]][imgsrc] +'" alt="" class="goodsimg"></div><div class="right"><p>'+searchList[this.index]['title']+'</p><h3>US $'+ once[0].split('|')[2] +'</h3></div>';
+				for(var q=0,len2=once.length;q<len2;q++){
+					if(once[q].split('|')[1] == 0){
+						that.para.querySelector('input[value="'+once[q].split('|')[0]+'"]').parentNode.classList.add('disable');
+						//console.log(once[q].split('|')[0])
+					}
+				}
+
+				//加载购买数量
+				var quantity = document.createElement('dl');
+				quantity.className = 'option-quantity';
+				quantity.innerHTML = '<dt>Quantity:<span>1</span></dt><div class="dd"><span class="minus"></span> <input type="number" value="1" name="quantity" max="'+once[0].split('|')[1]+'"> <span class="add"></span> <span class="piece">'+once[0].split('|')[1]+' piece left</span></div>';
+				this.para.appendChild(quantity);
+			}
+			detail.prototype.addEventHandler = function(){
+				var that = this;
+				var all = that.para.querySelectorAll('input[type=radio]');
+				for(var i=0,len=all.length; i<len; i++){
+					all[i].onclick = function(e){
+						
+						var focus = [];
+						for(var n=0; n<len; n++){if(all[n].checked){focus.push(all[n])}};
+						//产品主属性
+						if(this.parentNode.parentNode.parentNode === that.para.firstChild){
+							if(that.isSingle)return;
+
+							if(that.para.querySelector('.disable')){
+								var disables = that.para.querySelectorAll('.disable');
+								for(var o=0,dis_len=disables.length;o<dis_len;o++){
+									disables[o].classList.remove('disable');
+								}
+							};
+							
+							//console.log(this);
+							var value = this.value;
+							var name = this.name;
+							var remain = searchList[that.index]['suit'][value];
+
+							document.querySelector('.goods img').src = searchList[that.index][name][value];
+							for(var x in remain){
+								if(remain[x].split('|')[0] == 0){
+									that.para.querySelector('input[value="'+x+'"]').parentNode.classList.add('disable');
+									//console.log(that.para.querySelector('input[value="'+x+'"]').parentNode.parentNode.parentNode);
+								}
+							}
+
+							that.cremain.innerHTML = searchList[that.index]['suit'][value][focus[1].value].split('|')[0] + ' piece remain';
+							that.buyNumber.max = searchList[that.index]['suit'][value][focus[1].value].split('|')[0];
+							that.price.innerHTML = 'US $'+ searchList[that.index]['suit'][value][focus[1].value].split('|')[1];
+							//console.log(focus[1].value)
+						}else{
+							if(that.para.querySelector('.disable')){
+								var disables = that.para.querySelectorAll('.disable');
+								for(var o=0,dis_len=disables.length;o<dis_len;o++){
+									if(disables[o].firstChild.name == focus[0].name){
+										disables[o].classList.remove('disable');
+									}	
+									//console.log(disables[o].firstChild.name == focus[0].name)
+								}
+							};
+
+							var mainpara = focus[0].name;
+							var arr = [];
+							var me = searchList[that.index];
+							for(var o in me[mainpara]){arr.push(o)}
+							for(var z=0,slen=arr.length; z<slen; z++){
+								if(me['suit'][arr[z]][focus[1].value].split('|')[0] == 0){
+									//that.para.querySelector('input[value="'+x+'"]').parentNode.classList.add('disable');
+									//console.log(arr[z])
+									that.para.firstChild.querySelector('input[value="'+arr[z]+'"]').parentNode.classList.add('disable');
+								}
+								
+							}
+							//console.log(searchList[that.index]['suit'][focus[0].value][this.value].split('|')[0])
+							that.cremain.innerHTML = searchList[that.index]['suit'][focus[0].value][this.value].split('|')[0] + ' piece remain';
+							that.buyNumber.max = searchList[that.index]['suit'][focus[0].value][this.value].split('|')[0];
+						}
+					}
+				}
+				
+				document.querySelector('.option-quantity .add').addEventListener('click',function(){
+					var input = that.buyNumber;
+					var max = that.buyNumber.max*1;
+					input.value++;
+					if(input.value > max){
+						input.value = max;
+					}
+					document.querySelector('.options .para').querySelector('.option-quantity>dt>span').innerHTML = input.value;
+				},false)
+
+				document.querySelector('.parameter').onclick = function showOptions(){
+					document.querySelector('.mask').style.display='block';
+					document.querySelector('.options').style.display='block';
+					setTimeout(function(){
+						document.querySelector('.options').style.webkitTransform = 'translateX(0)';
+					},17)
+				}
+				function hideOptions(){
+					document.querySelector('.options').style.webkitTransform = '';
+					setTimeout(function(){
+						document.querySelector('.mask').style.display='none';
+						document.querySelector('.options').style.display='none';
+					},300)					
+				}
+				document.querySelector('.mask').onclick = hideOptions;
+				document.querySelector('.icon-cha').onclick = hideOptions;
+				document.querySelector('.done a').onclick = hideOptions;
+				
+
+				that.para.querySelector('.option-quantity .minus').addEventListener('click',function(){
+					var input = that.buyNumber;
+					input.value--;
+					if(input.value<1){
+						input.value = 1;
+					}
+					that.para.querySelector('.options .para').querySelector('.option-quantity>dt>span').innerHTML = input.value;
+				},false)
+				document.querySelector('.buy .buyNow').addEventListener('click',function(){
+					var price = document.querySelector('.base .price').innerText.match(/\d+/)[0];
+					var input = document.querySelectorAll('.para input[type=radio]');
+					var amount = document.querySelector('.para input[type=number]').value;
+					var para='';
+					Array.prototype.forEach.call(input,function(item,index){if(item.checked){para+='&'+item['name']+'='+item['value']}})
+					para+='&amount='+amount;
+					this.href = 'placeOrder.html?goods='+that.index+para;
+				})
+				document.querySelector('.buy .addCart').addEventListener('click',function(){
+					var input = document.querySelectorAll('.para input[type=radio]');
+					var amount = document.querySelector('.para input[type=number]').value;
+					var img = '../'+document.querySelector('.goods img').src.match(/images[\w\/.\-_]+/)[0];
+					var data = {};
+					data['id'] = that.index;
+					data['quantity'] = amount;
+					data['img'] = img;
+					data['opts'] = {};
+					data['onlyId'] = that.index + new Date()*1;
+					Array.prototype.forEach.call(input,function(item,index){if(item.checked){data['opts'][item.name] = item.value}})					
+
+					if(!localStorage.cartList){
+						localStorage.cartList = JSON.stringify(new Array());
+					}
+					var temp = JSON.parse(localStorage.cartList);
+					temp.push(data);
+					localStorage.cartList = JSON.stringify(temp);
+
+					var tooltip = document.querySelector('.tooltip');
+					tooltip.style.display = 'block';
+					setTimeout(function(){tooltip.style.opacity = '.8'},17)
+					setTimeout(function(){tooltip.style.opacity = '0';tooltip.style.display = 'none'},2000)
+				})
+			}
+			detail.prototype.loadView = function(){
+				var that = this;
+				var div = document.createElement('div');
+
+				var me = searchList[that.index];
+				var title = me['title'];
+				var satisfaction = me['satisfaction'];
+				var pfice = me['newPrice'];
+				var orders = me['totalSell'];
+				var shipping = me['freeShipping']==true?'Free shipping':'US $1.5';
+				var para = [];
+				var reg = new RegExp(/_[a-zA-Z]+/);
+				
+				div.innerHTML = '<div class="base"><h4>'+title+'</h4><div class="line-2"><i class="iconfont icon-star active"></i> <i class="iconfont icon-star active"></i> <i class="iconfont icon-star active"></i> <i class="iconfont icon-star active"></i> <i class="iconfont icon-star"></i> <span>'+satisfaction+' of buyers enjoyed this product!</span></div><div class="line-3"><h3 class="price">US $'+pfice+'</h3><span class="orders">'+orders+' Orders</span></div></div><div class="details"><ul><li class="parameter"><a href="javascript:"><div></div><div></div><i class="iconfont icon-go"></i></a></li><li class="deliver"><a href="javascript:"><div><span class="title">Shipping Cost:</span><span class="shipType">'+shipping+'</span></div><div><span class="address">To Russia via Swiss Post</span></div><i class="iconfont icon-go"></i></a></li><li class="shipping-time"><span class="title">Processing Time:</span><span>Ship out within 3 days</span></li></ul></div><div class="buy"><a href="javascript:" class="addCart">Add to Cart</a> <a href="javascript:" class="buyNow">Buy Now</a></div>'
+				document.querySelector('.view').appendChild(div);
+				for(var p in me){
+					if(reg.test(p)){
+						var type = Object.prototype.toString.call(me[p]).match(/object [\w]+/)[0].split(' ')[1];
+						para.push(p +'|'+type)
+					}
+				}
+
+				for(var i=0; i<para.length; i++){
+					var options = [];
+					var _div = document.createElement('div');
+					var span = document.createElement('span');
+					_div.innerHTML = '<span class="title">'+ para[i].split('|')[0]+':'+'</span>';
+
+					if(para[i].split('|')[1] == 'Object'){
+						
+						for(var x in me[para[i].split('|')[0]]){
+							options.push(x);
+						}
+							console.log(options)					
+						var frg = document.createDocumentFragment();
+						Array.prototype.forEach.call(options,function(item,index){
+							var i = document.createElement('i');
+							i.className = 'color';
+							i.style.background = '#'+options[index];
+							frg.appendChild(i);
+						})
+						span.appendChild(frg);			
+
+					}else{
+						
+						for(var x=0; x<me[para[i].split('|')[0]].length;x++){
+							options.push(me[para[i].split('|')[0]][x])
+						}
+						console.log(options)
+						span.innerHTML = '';
+						for(var z=0; z<options.length; z++){
+							span.innerHTML += options[z] +' ';		
+						}					
+					}
+					
+					_div.appendChild(span);
+					document.querySelector('.parameter a').appendChild(_div);
+				}
+			}
+			new detail();
+			
+		})()
+	
+	</script>
+<script type="text/javascript">
+	var scaleLimit = 3;
+	var temp;
+	var currentScale = 1;
+	var curX= 0;
+	var curY= 0;
+	var lr;
+	var tb;
+	var iw = window.innerWidth;
+	var ih = window.innerHeight;
+	var full;
+
+	var fullView = document.querySelector('.img-fullView');
+	document.querySelector('.options img').onclick = function(e){
+		document.querySelector('.fvWrapper').style.display='block';				
+		fullView.src = e.currentTarget.src;
+		fullView.style.top = (window.innerHeight - fullView.offsetHeight)/2 + 'px';
+		full = ih / fullView.offsetHeight;
+	}
+	document.querySelector('.fvWrapper').addEventListener('click',function(e){
+		if(e.target !== e.currentTarget)return;
+		this.style.display = 'none';
+	},false)
+
+         var hammertime = new Hammer(document.querySelector('.img-fullView'));
+         hammertime.add(new Hammer.Pinch());
+         hammertime.add( new Hammer.Pan({ direction: Hammer.DIRECTION_ALL, threshold: 0 }) );
+
+         //添加事件
+         hammertime.on("pinchend", function (e) {
+         	if(temp<1){
+         		currentScale = 1;
+         		e.target.style.transform = 'translate3d('+(curX+e.deltaX)+'px,'+(curY+e.deltaY)+'px,0) scale3d(1,1,1)';
+         		return;
+         	}
+            currentScale = temp;
+         });
+         hammertime.on("pinchin", function (e) {
+         	if(temp<1){
+         		currentScale = 1;
+         		e.target.style.transform = 'translate3d('+(curX+e.deltaX)+'px,'+(curY+e.deltaY)+'px,0) scale3d(1,1,1)';
+         		return;
+         	}
+         	temp = currentScale-(1-e.scale);
+         	e.target.style.transform = 'translate3d('+(curX+e.deltaX)+'px,'+(curY+e.deltaY)+'px,0) scale3d('+temp+','+temp+','+temp+')';
+         });
+		hammertime.on("pinchout", function (e) {
+         	if(temp>4){
+         		currentScale = 4;
+         		return;
+         	}
+         	temp = currentScale+(e.scale-1);
+         	e.target.style.transform = 'translate3d('+(curX+e.deltaX)+'px,'+(curY+e.deltaY)+'px,0) scale3d('+temp+','+temp+','+temp+')';
+         });
+
+        hammertime.on("panmove", function (e) {
+         	e.preventDefault();//console.log(e.changedPointers.length)
+         	if(e.changedPointers.length>1)return;
+         	e.target.style.transform = 'translate3d('+(curX+e.deltaX)+'px,'+(curY+e.deltaY)+'px,0) scale3d('+currentScale+','+currentScale+','+currentScale+')';     	
+         });
+        hammertime.on("tap", function (e) {
+        	if(e.target.currentScale !== 1){
+        		e.target.style.transform = 'translate3d(0,0,0) scale3d(1,1,1)';
+        		//e.target.style.transformOrigin = '';
+        		currentScale = 1;
+				curX= 0;
+				curY= 0;
+        	}
+        })
+
+         hammertime.on("panend", function (e) {
+         	curX += e.deltaX;
+         	curY +=e.deltaY
+         	
+         	lr = ((iw * currentScale)-iw)/2;
+            tb= (e.target.offsetHeight*currentScale-ih)/2;
+
+        	 if(curX>lr){
+            	e.target.style.transition ='transform 300ms ease';
+            	e.target.style.transform = 'translate3d('+lr+'px,'+curY+'px,0) scale3d('+currentScale+','+currentScale+','+currentScale+')';
+            	curX =lr
+            	setTimeout(function(){e.target.style.transition=''},300)
+            }if(curX<-lr){
+            	e.target.style.transition ='transform 300ms ease';
+            	e.target.style.transform = 'translate3d('+(-lr)+'px,'+curY+'px,0) scale3d('+currentScale+','+currentScale+','+currentScale+')';
+            	curX = -lr
+            	setTimeout(function(){e.target.style.transition=''},300)
+            }if(curY>tb && currentScale>full){
+            	e.target.style.transition ='transform 300ms ease';
+            	e.target.style.transform = 'translate3d('+curX+'px,'+tb+'px,0) scale3d('+currentScale+','+currentScale+','+currentScale+')';
+            	curY =tb
+            	setTimeout(function(){e.target.style.transition=''},300)
+            }if(curY<-tb && currentScale>full){
+            	e.target.style.transition ='transform 300ms ease';
+            	e.target.style.transform = 'translate3d('+curX+'px,'+(-tb)+'px,0) scale3d('+currentScale+','+currentScale+','+currentScale+')';
+            	curY = -tb
+            	setTimeout(function(){e.target.style.transition=''},300)
+            }
+            if((curY>tb || curY<-tb) && currentScale<full){
+            	e.target.style.transition ='transform 300ms ease';
+            	e.target.style.transform = 'translate3d(0,0,0) scale3d('+currentScale+','+currentScale+','+currentScale+')';
+            	curX=0;
+				curY=0;
+            	setTimeout(function(){e.target.style.transition=''},300)
+            }
+
+         });
+
+</script>
+<script src="../js/ui.js"></script>
+</html>

@@ -1,0 +1,56 @@
+main,section{
+	height: 100%;
+}
+body{
+	background: #f5f5f5;
+}
+main{
+	padding-top: 4.5rem;
+}
+header .backbar{
+	background: #fff;
+}
+._list{
+	display: -webkit-box;
+}
+._list .classify{
+	width: 5.2rem;
+}
+._list .classify i {
+	display: block;
+	width: 5.2rem;
+}
+._list .classify a{
+	border: none;
+}
+._list .detail{
+	-webkit-box-flex:1;
+}
+._list .detail a{
+	background: #ededed;
+}
+._list .detail h4{
+	margin-left: 1rem;
+}
+._list .detail .icon-go{
+	color: #9e9e9e; font-size: 1.3rem;display: block;position: absolute;right: 1rem;top:0;margin: 0;
+}
+.over-scroll{
+	height: 100%;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+html,body{
+	height: 100%;
+}
+._list .sk-circle{
+	margin-left: 70px;
+	margin-top: -50px;
+}
+._list .classify .active{
+	background: #e20b00;
+}
+
+._list .classify .active i{
+	color: #fff;
+}

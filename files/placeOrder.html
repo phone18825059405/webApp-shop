@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=0.5, minimum-scale=0.5, maximum-scale=0.5, user-scalable=no,minimal-ui">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="x5-fullscreen" content="true">
+	<meta name="full-screen" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta content="telephone=no" name="format-detection">
+	<meta content="email=no" name="format-detection">
+	<meta name="wap-font-scale" content="no">
+	<title>AliExpress</title>
+	<!-- 新 Bootstrap 核心 CSS 文件 -->
+	<link rel="stylesheet" type="text/css" href="../iconfont/iconfont.css">
+	<link rel="stylesheet" href="../css/reset.css">
+	<link rel="stylesheet" href="../css/ui.css">
+	<link rel="stylesheet" href="../css/placeOrder.css">
+</head>
+<body>
+	<header>
+		<div class="backbar">
+			<i class="iconfont icon-back"></i>
+			<h3>Place Order</h3>
+		</div>
+	</header>
+	<main>
+		<section id="address">
+			<div class="title">Shipping to</div>
+			<div class="shipping">			
+				<a class="address">
+					<p>Jung J.Wolfgram</p>
+					<p>717 Findley Avenue</p>
+					<p>Centralia,Washington 98531……</p>
+					<p>+1-360-3307503</p>
+					<i class="iconfont icon-go"></i>
+				</a>
+			</div>
+		</section>
+		<section id="list">
+			<div class="title">Order Detail</div>
+			<!--<div class="detail">
+				<div class="store">Online Store dudu3779</div>
+				<div class="base">
+					<div class="img"><img src="../images/goods_1.jpg" alt=""></div>
+					<div class="right">
+						<p>EAST KNITTING Fashion Women New Long Sleeve Pullovers celebrity style winter Zipper knitwear Sweater</p>
+						<span>Option: Red,XL</span>
+						<h3>US $50.00</h3>
+					</div>
+				</div>
+				<div class="form">
+					<div class="quantity">
+						<div class="title">Quantity:</div>
+						<div class="input">
+							<span class="minus"></span>
+							<input type="number" value="2" name="quantity">
+							<span class="add"></span>
+							<span>piece</span>
+						</div>
+					</div>
+					<div class="shipping">
+						<div class="title">Shipping:</div>
+						<span class="select">US $13.00 via UPS<i class="iconfont icon-go"></i></span>
+					</div>
+					<div class="message">
+						<div class="title">Message:</div>
+						<div class="input">
+							<textarea name="message" id="" cols="20" rows="5" placeholder="To seller(Optional)"></textarea>
+						</div>
+					</div>
+				</div>
+				<div class="pay"><a href="javascript:">Pay Now</a></div>
+			</div>-->
+		</section>
+	</main>
+	<script type="text/javascript" src="../js/search.js"></script>
+	<script type="text/javascript">
+		var index = window.location.search.match(/\d+/)[0];
+		var para = [];
+		var main_para;
+		window.location.search.match(/_[\w]+=\w+/g).forEach(function(item,index){para.push(item.split('=')[1]);if(index==0){main_para = item.split('=')[0]}});
+		console.log(main_para);
+		console.log(para);
+		var amount = window.location.search.match(/amount=[0-9]/).toString().match(/[0-9]/)[0];
+		var div = document.createElement('div');
+		div.className = 'detail'
+		div.innerHTML = '<div class="store">Online Store dudu3779</div><div class="base"><div class="img"><img src="'+searchList[index][main_para][para[0]]+'" alt=""></div><div class="right"><p>'+searchList[index]['title']+'</p><span>Option: '+para.toString()+'</span><h3>US $'+searchList[index]['suit'][para[0]][para[1]].split('|')[1]+'</h3></div></div><div class="form"><div class="quantity"><div class="title">Quantity:</div><div class="input"><span class="minus" onclick="minus()"></span> <input type="number" value="'+amount+'" name="quantity"> <span class="add" onclick="add()"></span> <span class="piece">piece</span></div></div><div class="shipping"><div class="title">Shipping:</div><span class="select">US $13.00 via UPS<i class="iconfont icon-go"></i></span></div><div class="message"><div class="title">Message:</div><div class="input"><textarea name="message" id="" cols="20" rows="5" placeholder="To seller(Optional)"></textarea></div></div></div><div class="pay"><a href="javascript:">Create an Order</a></div>';
+		document.querySelector('#list').appendChild(div);
+
+		function add(){
+			var input = document.querySelector('.quantity input[type=number]');
+			var value = input.value*1;
+			input.value = ++value;
+		}
+		function minus(){
+			var input = document.querySelector('.quantity input[type=number]');
+			var value = input.value*1;
+			input.value = --value;
+			if(input.value < 1){
+				input.value = 1;
+			}
+		}
+
+		document.querySelector('textarea').onfocus = function(e){
+			var div = document.createElement('div');
+			div.style.height = window.innerHeight/2 + 'px';
+			div.className = 'holder';
+			e.currentTarget.parentNode.appendChild(div);
+			document.body.scrollTop += window.innerHeight;
+			//console.log(e.currentTarget.parentNode)
+		}
+		document.querySelector('textarea').onblur = function(e){
+			var target = e.currentTarget;
+			var holder = target.parentNode.querySelector('.holder');
+			if(holder)target.parentNode.removeChild(holder)
+			
+			//console.log(e.currentTarget.parentNode)
+		}
+		var ih = window.innerHeight;
+		var val = 0;
+		window.addEventListener('resize',function(){
+			/*var holder = document.querySelector('textarea').parentNode.querySelector('.holder');
+			document.querySelector('textarea').parentNode.removeChild(holder)*/
+			document.querySelector('textarea').value = val++;
+
+		})
+		/*document.querySelector('textarea').onfocus=function(){this.style.position="fixed";this.style.bottom=0}
+		document.querySelector('textarea').onblur=function(){this.style.position="";this.style.bottom='';}*/
+		document.querySelector('.pay a').onclick = function(){
+			this.href = 'payment.html'+window.location.search.replace(/amount=[0-9]/,'amount='+document.querySelector('.quantity input[type=number]').value);
+
+			/*var search = window.location.search.replace(/amount=[0-9]/,'amount='+document.querySelector('.quantity input[type=number]').value).slice(1).split('&');
+			var gTemp = {};
+			search.forEach(function(item){
+				gTemp[item.split('=')[0]] = item.split('=')[1]
+			})
+			
+			var temp = {};temp.goods = [];
+
+			temp.time = new Date().toString().slice(0,-21);
+			temp.orderId = new Date()*1;
+			temp.goods.push(gTemp);
+
+			if(!localStorage.orders){
+				var arr = [];			
+			}else{
+				var arr = JSON.parse(localStorage.orders);
+			}
+			arr.push(temp);
+			localStorage.orders = JSON.stringify(arr);*/
+		}
+	</script>
+	<script src="../js/ui.js"></script>
+</body>
+</html>
